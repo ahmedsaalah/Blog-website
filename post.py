@@ -49,7 +49,10 @@ class Post(Handler):
                      blog.put()
                      self.redirect('/')
                 else:
-                    a = Blog.create_blog_entry(created_by=Post.user,
+                    logging.info(Post.user)
+                    logging.info(title)
+                    logging.info(article)
+                    a = Blog.create_blog_entry(created_by=Users.by_id(Post.user),
                                                         title=title,
                                                         article=article)
                     self.redirect('/allposts?id=%s' % str(a.key().id()))
