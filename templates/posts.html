@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+
+.panel-shadow {
+    box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+}
+.panel-white {
+  border: 1px solid #dddddd;
+}
+.panel-white  .panel-heading {
+  color: #333;
+  background-color: #fff;
+  border-color: #ddd;
+}
+.panel-white  .panel-footer {
+  background-color: #fff;
+  border-color: #ddd;
+}
+
+.post .post-heading {
+  height: 95px;
+  padding: 20px 15px;
+}
+.post .post-heading .avatar {
+  width: 60px;
+  height: 60px;
+  display: block;
+  margin-right: 15px;
+}
+.post .post-heading .meta .title {
+  margin-bottom: 0;
+}
+.post .post-heading .meta .title a {
+  color: black;
+}
+.post .post-heading .meta .title a:hover {
+  color: #aaaaaa;
+}
+.post .post-heading .meta .time {
+  margin-top: 8px;
+  color: #999;
+}
+.post .post-image .image {
+  width: 100%;
+  height: auto;
+}
+.post .post-description {
+  padding: 15px;
+}
+.post .post-description p {
+  font-size: 14px;
+}
+.post .post-description .stats {
+  margin-top: 20px;
+}
+.post .post-description .stats .stat-item {
+  display: inline-block;
+  margin-right: 15px;
+}
+.post .post-description .stats .stat-item .icon {
+  margin-right: 8px;
+}
+.post .post-footer {
+  border-top: 1px solid #ddd;
+  padding: 15px;
+}
+.post .post-footer .input-group-addon a {
+  color: #454545;
+}
+.post .post-footer .comments-list {
+  padding: 0;
+  margin-top: 20px;
+  list-style-type: none;
+}
+.post .post-footer .comments-list .comment {
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+}
+.post .post-footer .comments-list .comment .avatar {
+  width: 35px;
+  height: 35px;
+}
+.post .post-footer .comments-list .comment .comment-heading {
+  display: block;
+  width: 100%;
+}
+.post .post-footer .comments-list .comment .comment-heading .user {
+  font-size: 14px;
+  font-weight: bold;
+  display: inline;
+  margin-top: 0;
+  margin-right: 10px;
+}
+.post .post-footer .comments-list .comment .comment-heading .time {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 0;
+  display: inline;
+}
+.post .post-footer .comments-list .comment .comment-body {
+  margin-left: 50px;
+}
+.post .post-footer .comments-list .comment > .comments-list {
+  margin-left: 50px;
+}
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="/fonts/font-awesome.min.css">
+<div class="main">
+        <br>
+<div class="container">
+
+
+   
+  
+  
+  {%  for i in range(l) %}
+        <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-white post panel-shadow">
+            <div class="post-heading">
+                <div class="pull-left image">
+                    <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                </div>
+                <div class="pull-left meta">
+                    <div class="title h5">
+                        <a href="#"><b>{{posts[i].created_by.name}}</b></a>
+                        {{posts[i].title}}
+                    </div>
+     
+                    <h6 class="text-muted time">{{posts[i].created}}</h6>
+                </div>
+                               <div style ="float:right">
+                                   {% if user.key().id() == posts[i].created_by.key().id() %}
+                
+                      <a href="/deletepost?deleteid={{posts[i].key().id()}}" ><span class="glyphicon glyphicon-trash"></span></a>
+                      <a href="/editpost?editid={{posts[i].key().id()}}" ><span class="glyphicon glyphicon-edit"></span></a>
+                   
+                    {%  endif %}
+                    </div>
+            </div> 
+            <div class="post-description"> 
+                <p>{{posts[i].article}}</p>
+                <div class="stats">
+
+                    
+                        
+                        <a href="/like?lid={{posts[i].key().id()}}" class="btn btn-default stat-item" >
+                                      <img src="http://imgur.com/pZfYIp0.png" alt="Mountain View" style="width:32px;height:30px;">
+{{likes[i].up}}
+
+   </a>    <a href="/dislike?did={{posts[i].key().id()}}" class="btn btn-default stat-item">
+                       <img src="http://i.imgur.com/p00Umyo.png" alt="Mountain View" style="width:32px;height:30px;">
+            {{likes[i].down}}
+
+                 </a>
+
+                </div>
+            </div>
+            <div class="post-footer">
+                <div class="input-group"> 
+                    <form action="/comment" method="post">
+                    <input class="form-control" placeholder="Add a comment" name="theComment" type="text">
+                    <input class="form-control" placeholder="Add a comment" value ="{{posts[i].key().id()}}"  name="thepost" type="hidden">
+                    </form>
+                    <span class="input-group-addon">
+                        <a href=""><i class="fa fa-edit"></i></a>  
+                    </span>
+                </div>
+                <ul class="comments-list">
+                    {% for comment in comments[i] %}
+
+                    <li class="comment">
+                        <a class="pull-left" href="#">
+                            <img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                        </a>
+                        <div class="comment-body">
+                            <div class="comment-heading">
+                                <h4 class="user">{{comment.commentBy.name}}</h4>
+                                <h5 class="time">{{comment.created}}</h5>
+                            </div>
+                            <p>{{comment.comment}}</p>
+                        </div>
+                        
+                    </li>
+                    {% endfor %}
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+      {% endfor %} 
+</div>
+{% endblock %}

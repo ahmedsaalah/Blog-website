@@ -1,0 +1,18 @@
+gcloud app deploy app.yaml
+dev_appserver.py app.yaml --port 9999
+
+
+
+gcloud app deploy app.yaml
+============================
+Authenticate using the following command:
+gcloud init
+$
+Clone your empty Cloud Repository to a local Git repository:
+gcloud source repos clone python-gae-quickstart --project=udacity-160712
+$ Note: This may display a "warning: remote HEAD refers to nonexistent ref, unable to checkout." message that is safe to ignore.
+Switch to your new local Git repository:
+cd python-gae-quickstart
+$
+Once you've committed code to your local repository, push it to your Cloud Repository using:
+git push -u origin master

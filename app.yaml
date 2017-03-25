@@ -1,0 +1,35 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /css
+  static_dir: css
+- url: /js
+  static_dir: js
+
+
+- url: /css/(.*\.(css))
+  static_files: css/\1
+  upload: css/(.*\.(css))
+- url: /js/(.*\.(js))
+  static_files: js/\1
+  upload: js/(.*\.(js))
+- url: /images/(.*)
+  static_files: images/\1
+  upload: images/.*
+
+
+- url: .*
+  script: templetes.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: jinja2
+  version: latest
+

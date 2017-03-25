@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Salah Blog</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+	<!--link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png" />
+	<link rel="icon" type="image/png" href="/img/favicon.png" /-->
+
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+	<!-- CSS Files -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/material-bootstrap-wizard.css" rel="stylesheet" />
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="/css/demo.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="image-container set-full-height" style="background-image: url('http://imgur.com/eF0BYRw.jpg')">
+	    <!--   Creative Tim Branding   -->
+
+
+		<!--  Made With Material Kit  -->
+		<a href="https://www.facebook.com/ahmed.salaa7" class="made-with-mk">
+			<div class="brand">AS</div>
+			<div class="made-with">Made with <strong>Ahmed salah</strong></div>
+		</a>
+
+	    <!--   Big container   -->
+	    <div class="container">
+	        <div class="row">
+		        <div class="col-sm-8 col-sm-offset-2">
+		            <!--      Wizard container        -->
+		            <div class="wizard-container">
+		                <div class="card wizard-card" data-color="red" id="wizard">
+		                
+		                <!--        You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple"             -->
+
+		                    	<div class="wizard-header">
+		                        	<h3 class="wizard-title">
+		                        		Welcome  Salah Blog
+		                        	</h3>
+									<h5>“We meet aliens every day who have something to give us. They come in the form of people with different opinions. ” 
+― William Shatner.</h5>
+<h2>Share Your Opinion with Confidence</h2>
+		                    	</div>
+								<div class="wizard-navigation">
+									<ul>
+			                            <li><a href="#details" onclick="myFunction1()" data-toggle="tab" >Login</a></li>
+			                            <li><a href="#captain" onclick="myFunction()" data-toggle="tab">Sign up</a></li>
+
+			                        </ul>
+								</div>
+
+		                        <div class="tab-content">
+									<form method="post">
+		                            <div class="tab-pane" id="details">
+		                            	<div class="row">
+			                            	<div class="col-sm-12">
+			                                	<h4 class="info-text"> Let's start with the basic details.</h4>
+			                            	</div>
+		                                	<div class="col-sm-12" >
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">perm_identity</i>
+													</span>
+													<div class="form-group label-floating">
+			                                          	<label class="control-label">Your Name</label>
+			                                          	<input name="name" type="text" class="form-control">
+			                                        </div>
+												</div>
+
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">lock_outline</i>
+													</span>
+													<div class="form-group label-floating">
+			                                          	<label class="control-label">Your Password</label>
+			                                          	<input name="pw" type="password" class="form-control">
+			                                        </div>
+												</div>
+
+		                                	</div>
+											{{error}}
+		                                	<div class="col-sm-6">
+		                                    	
+										
+		                                	</div>
+		                            	</div>
+		                            </div>
+									<br>
+									<br>
+									                        	<div class="pull-right" id="form1">
+	                                    <input type='submit' class='btn btn-next btn-fill btn-danger btn-wd' name='submit' value='signin' />
+									                        	</div>
+									</form>
+
+									<form  method="post">
+		                            <div class="tab-pane" id="captain">
+		                            	<div class="row">
+			                            	<div class="col-sm-12">
+			                                	<h4 class="info-text"> Let's start with the basic details.</h4>
+			                            	</div>
+		                                	<div class="col-sm-6">
+												<div class="input-group">
+													<span class="input-group-addon">
+														
+														<i class="material-icons">perm_identity</i>
+													</span>
+													<div class="form-group label-floating">
+			                                          	<label class="control-label">Your Name</label>
+			                                          	<input name="name" type="text" class="form-control">
+			                                       {{error_name}}
+												    </div>
+												</div>
+
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">email</i>
+													</span>
+													<div class="form-group label-floating">
+			                                          	<label class="control-label">Your Email</label>
+			                                          	<input name="email" type="email" class="form-control">
+			                                       
+												    </div>
+												</div>
+
+		                                	</div>
+		                                	<div class="col-sm-6">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">lock_outline</i>
+													</span>
+													<div class="form-group label-floating">
+			                                          	<label class="control-label">Your Password</label>
+			                                          	<input name="pw" type="password" class="form-control">
+			                                          {{error_pw}}
+													</div>
+												</div>
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">lock_outline</i>
+													</span>
+													<div class="form-group label-floating">
+			                                          	<label class="control-label">Your Password</label>
+			                                          	<input name="pw2" type="password" class="form-control">
+			                                       
+													</div>
+												</div>
+		                          
+									
+		                                	</div>
+											
+		                            	</div>
+										
+		                            <br>
+									  <br>
+									    <br>
+								                 	<div class="pull-right">
+													     <button class="btn waves-effect waves-light" type="submit" style="float: right;" name="submit" value="signup">Signup
+    <i class="material-icons right">send</i>
+  </button>
+          </div>
+	                  
+								  
+								   
+								    </div>
+												<br>
+									<br>
+									                        	<div class="pull-right" id="form2">
+	                                    <input type='button' class='btn btn-next btn-fill btn-danger btn-wd'style="background-color: #26a69a;" name='submit' value='submit' />
+									                        	</div>
+								
+									</form>
+		                        </div>
+
+	                        	<div class="wizard-footer">
+	                            	<div class="pull-right">
+	  </div>
+	                                <div class="pull-left">
+
+										<div class="footer-checkbox">
+											<div class="col-sm-12">
+											  
+										  </div>
+										</div>
+	                                </div>
+	                                <div class="clearfix"></div>
+	                        	</div>
+								
+		                    </form>
+		                </div>
+		            </div> <!-- wizard container -->
+		        </div>
+	    	</div> <!-- row -->
+		</div> <!--  big container -->
+
+	    <div class="footer">
+	        <div class="container text-center">
+	             Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/ahmedsaalah/Multi-User-Blog">Ahmed salah </a>
+	        </div>
+	    </div>
+	</div>
+
+</body>
+	<!--   Core JS Files   -->
+	<script src="/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/js/jquery.bootstrap.js" type="text/javascript"></script>
+
+	<!--  Plugin for the Wizard -->
+	<script src="/js/material-bootstrap-wizard.js"></script>
+
+	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+	<script src="/js/jquery.validate.min.js"></script>
+
+	<script>
+
+
+		$(document).ready(function() { $('#captain').hide();
+$('#details').show(); 
+
+$('#form2').hide();
+$('#form').show();
+
+});
+function myFunction() {
+  $('#details').hide();
+  $('#captain').show();
+  $('#form').hide();
+$('#form2').show();
+
+}
+
+function myFunction1() {
+$('#captain').hide();
+$('#details').show();
+
+$('#form2').hide();
+$('#form').show();
+
+
+}
+	</script>
+</html>
