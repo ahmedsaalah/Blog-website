@@ -19,7 +19,7 @@ app = webapp2.WSGIApplication([
     ('/like',like),
     ('/dislike',dislike),
     ('/deletepost',deletepost),
-    ('/editpost',editpost)
+    ('/editpost',Post)
 ], debug=True)
         
 

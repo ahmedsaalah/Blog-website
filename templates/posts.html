@@ -136,7 +136,7 @@
                                    {% if user.key().id() == posts[i].created_by.key().id() %}
                 
                       <a href="/deletepost?deleteid={{posts[i].key().id()}}" ><span class="glyphicon glyphicon-trash"></span></a>
-                      <a href="/editpost?editid={{posts[i].key().id()}}" ><span class="glyphicon glyphicon-edit"></span></a>
+                      <a href="/editpost?post_id={{posts[i].key().id()}}" ><span class="glyphicon glyphicon-edit"></span></a>
                    
                     {%  endif %}
                     </div>

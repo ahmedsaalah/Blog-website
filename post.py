@@ -18,9 +18,13 @@ class Post(Handler):
         Post.user=check_secure_val(self.request.cookies.get('user_id', '0'))
         if Post.user:
             Post.user=Users.by_id(Post.user)
-
         if Post.user:
-            self.render('writepost.html',name = Post.user.name)
+            if self.request.get('post_id'):
+                blog = Blog.get_by_id_str(self.request.get('post_id'))
+                self.render('writepost.html',name = Post.user.name, blog=blog, post_id = self.request.get('post_id'))
+            else:
+                self.render('writepost.html',name = Post.user.name)
+                
         else:
             self.redirect('/')
 
@@ -29,13 +33,23 @@ class Post(Handler):
 
     def post(self):
         """Create a blog-entry """
+        Post.user=check_secure_val(self.request.cookies.get('user_id', '0'))
         if not Post.user:
-            self.redirect('/home')
+            self.redirect('/')
         else:
+
             title = self.request.get("title")
             article = self.request.get("article")
+                
             if title and article and self.user:
-                a = Blog.create_blog_entry(created_by=Post.user,
-                                                     title=title,
-                                                     article=article)
-                self.redirect('/allposts?id=%s' % str(a.key().id()))
+                if self.request.get('post_id'):
+                     blog = Blog.get_by_id_str(self.request.get('post_id'))
+                     blog.title = title
+                     blog.article = article
+                     blog.put()
+                     self.redirect('/')
+                else:
+                    a = Blog.create_blog_entry(created_by=Post.user,
+                                                        title=title,
+                                                        article=article)
+                    self.redirect('/allposts?id=%s' % str(a.key().id()))

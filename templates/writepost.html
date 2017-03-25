@@ -39,10 +39,14 @@
 
     <form class="col s12" method="post">
       <div class="input-field col s6" style="left: -10px;">
-        {% if id %}
-         <input type="hidden" value={{id}} name ="bid">
+        {% if blog %}
+         <input type="hidden" value="{{post_id}}" name ="post_id">
          {% endif %}
-          <input id="last_name" type="text" class="validate" value={{title}}  name="title" style="font-size: 1.2rem;">
+         {% if blog %}
+          <input id="last_name" type="text" class="validate" value={{blog.title}}  name="title" style="font-size: 1.2rem;">
+         {% else %}
+          <input id="last_name" type="text" class="validate"  name="title" style="font-size: 1.2rem;">
+         {% endif %}
           <label for="last_name" style="font-size: 1.2rem;" >Title</label>
         </div>
 
@@ -50,16 +54,16 @@
         <div class="input-field col s12" style="
    
     font-size: 2.5em; ">
-    {% if article%}
-           <textarea id="textarea1" class="materialize-textarea"  name="article" data-length="10000" style="font-size: 2rem;">{{article}}</textarea>
+    {% if blog%}
+           <textarea id="textarea1" class="materialize-textarea"  name="article" data-length="10000" style="font-size: 2rem;">{{blog.article}}</textarea>
    {% else %}
            <textarea id="textarea1" class="materialize-textarea"  name="article" data-length="10000" style="font-size: 2rem;">Write your blog here</textarea>
-  
    {% endif %}
            
           <label for="textarea1" style="font-size: 1.2rem;">Textarea</label>
         </div>
       </div>
+
         <button class="btn waves-effect waves-light" type="submit" style="float: right;" name="action">Submit
     
   </button>
