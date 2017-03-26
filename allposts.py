@@ -22,7 +22,9 @@ class Allposts(Handler):
             if type(Allposts.user) is not Users:
 
                 Allposts.user=Users.by_id(Allposts.user)
-            if(self.request.get('id')):
+            b=Blog.get_by_id_str(id)
+                         
+            if(self.request.get('id') and b):
                 posts =[]
                 blog=Blog.get_by_id_str(id)
                 posts.insert(0,blog)
@@ -88,12 +90,14 @@ class comment(Allposts):
             Auser=Users.by_id(user)
         
             comment = comment.strip()
+            b=Blog.get_by_id_str(thepost)
+            if b: 
 
-            comment_entry = Comments(
-                commentBy=Auser,
-                commentOn=Blog.get_by_id_str(thepost),
-                comment=comment)
-            comment_entry.put()
+                comment_entry = Comments(
+                    commentBy=Auser,
+                    commentOn=b,
+                    comment=comment)
+                comment_entry.put()
         self.redirect('/')
         
 
@@ -105,8 +109,10 @@ class like(Allposts):
 
         if(user):
             Auser=Users.by_id(user)
-            
-            Like.like_on_blog(Blog.get_by_id_str(id),Auser,'up')
+            if Auser :
+                b=Blog.get_by_id_str(id)
+                if b:
+                    Like.like_on_blog(b,Auser,'up')
         self.redirect('/')
 
     
@@ -121,8 +127,10 @@ class dislike(Allposts):
 
         if(user):
             Auser=Users.by_id(user)
-            
-            Like.like_on_blog(Blog.get_by_id_str(id),Auser,'down')
+            if Auser :
+                b=Blog.get_by_id_str(id)
+                if b:
+                    Like.like_on_blog(b,Auser,'down')
         self.redirect('/')
 
 
@@ -134,30 +142,12 @@ class deletepost(Allposts):
 
         if(user):
             Auser=Users.by_id(user)
-            logging.info(user)
-            logging.info(Blog.get_by_id_str(id).created_by.key().id())
+
+            b=Blog.get_by_id_str(id)
             
-            if (int(user)==int(Blog.get_by_id_str(id).created_by.key().id())):
+            if (b and int(user)==int(Blog.get_by_id_str(id).created_by.key().id())):
                 Blog.get_by_id_str(id).delete()
         self.redirect('/')
 
 
 
-class editpost(Allposts):
-    def get(self):
-        id=self.request.get('editid')
-        user_id = self.request.cookies.get('user_id', '0')
-        user=check_secure_val(user_id)
-
-        if(user):
-            Auser=Users.by_id(user)
-            if (int(user)==int(Blog.get_by_id_str(id).created_by.key().id())):
-                bid=Blog.get_by_id_str(int(id))
-                title=Blog.get_by_id_str(int(id)).title
-                logging.info(title)
-                article=Blog.get_by_id_str(int(id)).article
-                logging.info(article)           
-                self.render('writepost.html',title=title,article=article,id=bid)
-        
-        else:
-            self.redirect('/')

@@ -44,9 +44,11 @@ class Post(Handler):
             if title and article and self.user:
                 if self.request.get('post_id'):
                      blog = Blog.get_by_id_str(self.request.get('post_id'))
-                     blog.title = title
-                     blog.article = article
-                     blog.put()
+                     if blog :
+                         blog.title = title
+                         blog.article = article
+                         blog.put()
+
                      self.redirect('/')
                 else:
                     logging.info(Post.user)
